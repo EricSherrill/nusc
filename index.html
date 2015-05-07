@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+  <head>
+    <head>
+      <script data-require="angular.js@1.4.0-rc.1" data-semver="1.4.0-rc.1" src="https://code.angularjs.org/1.4.0-rc.1/angular.js"></script>
+      <link rel="stylesheet" href="style.css" />
+      <script src="arrays.js"></script>
+      <script src="main.js"></script>
+  </head>
+
+  <body ng-controller="MainController">
+
+    <h1>NetApp Usable Space Calculator</h1>
+
+
+    <div class="container"> <!-- Calculator.html -->
+
+      Usable Drives: {{ (totalDrives - (spareDrives + rootDrives)) }} <br>
+      Calculated Usable: {{ usableDrives() }} <br>
+      <br>
+      Calculated Parity Overhead: {{ parityDrives() }} <br>
+      <br>
+      Calculated Data Drives: {{ dataDrives() }} <br>
+      <br>
+      Total Drive Efficiency: {{ totalDriveEfficiency() | number:2 }}% <br>
+      Usable Drive Efficiency: {{ usableDriveEfficiency() | number:2 }}% <br>
+      <br>
+      RG Size: {{ rgSize }} <br>
+      <br>
+      Number of Raid Groups: {{ numRaidGroups() }} <br>
+
+
+      <hr>
+
+      <!-- INPUTS -->
+
+      <label for="totalDrives">Total Drives:</label>
+      <input type="number" name="totalDrives" ng-model="totalDrives">
+      <br>
+
+      <label for="spareDrives">Spare Drives:</label>
+      <input type="number" name="spareDrives" ng-model="spareDrives">
+      <br>
+
+      <label for="rootDrives">Root Drives:</label>
+      <input type="number" name="rootDrives" ng-model="rootDrives">
+      <br>
+
+      <label for="rgSize">Raid Group Size:</label>
+      <input type="number" name="rgSize" ng-model="rgSize">
+      <!-- add default, max, min and custom options to auto-select rgSize -->
+      <br>
+
+      <label for="selectedDrive">Select Drive:</label>
+      <select  name="selectedDrive" ng-model="selectedDrive" ng-options="(drive.mkt_size + ' GB - ' + drive.type) for drive in drives | unique:'right_size_mib' | orderBy:'-mkt_size'"></select>
+      <br>
+
+      <label for="selectedRaidType">Select RAID Type:</label>
+      <select name="selectedRaidType" ng-model="selectedRaidType" ng-options="(raid.displayName) for raid in raidTypes"></select>
+      <br>
+
+      <label for="aggrReserve">Aggregate Reserve %:</label>
+      <input type="number" name="aggrReserve" ng-model="aggrReserve">
+      <br>
+
+      <label for="snapReserve">Snapshot Reserve %:</label>
+      <input type="number" name="snapReserve" ng-model="snapReserve">
+      <br>
+
+      <label for="waflReserve">WAFL Reserve %:</label>
+      <input type="number" name="waflReserve" ng-model="waflReserve">
+      <br>
+
+      <label for="selectedOutputUnit">Select Output Unit:</label>
+      <select name="selectedOutputUnit" ng-model="selectedOutputUnit" ng-options="unit.iec as unit.displayName for unit in outputUnits | filter:{base:2}"></select>
+      <br>
+      <br>
+      Selected Drive Physical Size: {{ selectedDrive.physical_size_mib | number }} MiB <br>
+      Selected Drive Right Size: {{ selectedDrive.right_size_mib | number }} MiB<br>
+      <br>
+
+      <!-- OUTPUTS -->
+      <br>Outputs:<br><br>
+      Total Raw Capacity: {{ totalRawCapacity() | base10convert:2:'GB' }} <br>
+      Total Base 2 Capacity: {{ totalPhysicalCapacity() | base2convert:2:'MiB':selectedOutputUnit }} <br>
+      Total Right Size Capacity: {{ totalRightSizeCapacity() | base2convert:2:'MiB':selectedOutputUnit }} <br>
+      <br>
+      Total Aggregate Capacity: {{ aggrCapacity() | base2convert:2:'MiB':selectedOutputUnit }} <br>
+      Volume Usable Capacity: {{ volumeCapacity() | base2convert:2:'MiB':selectedOutputUnit }} <br>
+      <br>
+
+
+    </div> <!-- Enc Calculator.html -->
+
+
+    <!-- <div ng-include="'drive_table.html'"></div>  -->
+  </body>
+
+</html>

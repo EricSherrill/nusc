@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <form role="form">
+        <div class="form-group">
+          <input type="search" class="form-control" placeholder="Filter Drive Model" ng-model="driveSearch" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table table-border table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Model #
+              <a href="#" ng-click="sortType = 'model_num'; sortReverse = !sortReverse"><span class="glyphicon glyphicon-sort"></span></a>
+            </th>
+            <th>Type
+              <a href="#" ng-click="sortType = 'type'; sortReverse = !sortReverse"><span class="glyphicon glyphicon-sort"></span></a>
+            </th>
+            <th>Speed (RPM)
+              <a href="#" ng-click="sortType = 'rpm_speed'; sortReverse = !sortReverse"><span class="glyphicon glyphicon-sort"></span></a>
+            </th>
+            <th>Marketed Size
+              <a href="#" ng-click="sortType = 'mkt_size'; sortReverse = !sortReverse"><span class="glyphicon glyphicon-sort"></span></a>
+            </th>
+            <th>Right Size
+              <a href="#" ng-click="sortType = 'right_size'; sortReverse = !sortReverse"><span class="glyphicon glyphicon-sort"></span></a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="drive in drives | filter:driveSearch | orderBy:sortType:sortReverse">
+            <td>{{drive.model_num}}</td>
+            <td>{{drive.type}}</td>
+            <td>{{drive.rpm_speed | number}}</td>
+            <td>{{drive.mkt_size}} GB</td>
+            <td>{{drive.right_size_mib | number}} MiB</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
