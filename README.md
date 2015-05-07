@@ -1,2 +1,2 @@
-# nusc
-NetApp Usable Space Calculator
+#NetApp Usable Space Calculator
+unusable now, just getting started
