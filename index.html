@@ -16,7 +16,6 @@
 
     <div class="container"> <!-- Calculator.html -->
 
-      Usable Drives: {{ (totalDrives - (spareDrives + rootDrives)) }} <br>
       Calculated Usable: {{ usableDrives() }} <br>
       <br>
       Calculated Parity Overhead: {{ parityDrives() }} <br>
@@ -50,6 +49,26 @@
       <label for="rgSize">Raid Group Size:</label>
       <input type="number" name="rgSize" ng-model="rgSize">
       <!-- add default, max, min and custom options to auto-select rgSize -->
+
+      <form name="rgSizeForm">
+        <label>
+          <input type="radio" name="rgSize" value="3" ng-model="rgSize">
+        Min
+        </label>
+        <label>
+          <input type="radio" name="rgSize" ng-value="selectedDrive.rg_size_dp_max" ng-model="rgSize">
+        Max
+        </label>
+        <label>
+          <input type="radio" name="rgSize" ng-value="selectedDrive.rg_size_dp_default" ng-model="rgSize">
+        Default
+        </label>
+        <label>
+          <input type="radio" name="rgSize" ng-value="" ng-model="rgSize">
+        Custom
+        </label>
+      </form>
+
       <br>
 
       <label for="selectedDrive">Select Drive:</label>
@@ -67,7 +86,7 @@
       <label for="snapReserve">Snapshot Reserve %:</label>
       <input type="number" name="snapReserve" ng-model="snapReserve">
       <br>
-
+      <!-- waflReserve should not be configurable -->
       <label for="waflReserve">WAFL Reserve %:</label>
       <input type="number" name="waflReserve" ng-model="waflReserve">
       <br>
@@ -81,6 +100,17 @@
       <br>
 
       <!-- OUTPUTS -->
+
+      <!-- Selected Drive Details -->
+      <p>Model #: {{ selectedDrive.model_num }}</p>
+      <p>Marketed Size: {{ selectedDrive.mkt_size }} GB</p>
+      <p>Right Size: {{ selectedDrive.right_size_mib | number}} MiB</p>
+      <p>Drive Type: {{ selectedDrive.type }}</p>
+      <p>Drive Speed: {{ selectedDrive.rpm_speed | number }} RPM</p>
+
+      <!-- End Selected Drive Details -->
+
+      <!-- Calculated Outputs -->
       <br>Outputs:<br><br>
       Total Raw Capacity: {{ totalRawCapacity() | base10convert:2:'GB' }} <br>
       Total Base 2 Capacity: {{ totalPhysicalCapacity() | base2convert:2:'MiB':selectedOutputUnit }} <br>

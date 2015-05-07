@@ -51,15 +51,15 @@
     $scope.usableDriveEfficiency = function() {
       return ($scope.dataDrives() / $scope.usableDrives()) * 100;
     };
-
+    // total base 10 capacity
     $scope.totalRawCapacity = function () {
       return $scope.totalDrives * $scope.selectedDrive.mkt_size;
     };
-
+    // total physical capacity, base 2 before right-sizing
     $scope.totalPhysicalCapacity = function () {
       return $scope.totalDrives * $scope.selectedDrive.physical_size_mib;
     };
-
+    // total right size capacity, base 2
     $scope.totalRightSizeCapacity = function () {
       return $scope.totalDrives * $scope.selectedDrive.right_size_mib;
     };
