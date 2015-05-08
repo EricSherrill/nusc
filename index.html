@@ -16,22 +16,6 @@
 
     <div class="container"> <!-- Calculator.html -->
 
-      Calculated Usable: {{ usableDrives() }} <br>
-      <br>
-      Calculated Parity Overhead: {{ parityDrives() }} <br>
-      <br>
-      Calculated Data Drives: {{ dataDrives() }} <br>
-      <br>
-      Total Drive Efficiency: {{ totalDriveEfficiency() | number:2 }}% <br>
-      Usable Drive Efficiency: {{ usableDriveEfficiency() | number:2 }}% <br>
-      <br>
-      RG Size: {{ rgSize }} <br>
-      <br>
-      Number of Raid Groups: {{ numRaidGroups() }} <br>
-
-
-      <hr>
-
       <!-- INPUTS -->
 
       <label for="totalDrives">Total Drives:</label>
@@ -51,22 +35,22 @@
       <!-- add default, max, min and custom options to auto-select rgSize -->
 
       <form name="rgSizeForm">
-        <label>
-          <input type="radio" name="rgSize" value="3" ng-model="rgSize">
+        <label for"rgSizeMin">
+          <input id="rgSizeMin" type="radio" name="rgSize" ng-value="rgSizeMin()" ng-model="rgSize">
         Min
         </label>
-        <label>
-          <input type="radio" name="rgSize" ng-value="selectedDrive.rg_size_dp_max" ng-model="rgSize">
-        Max
-        </label>
-        <label>
-          <input type="radio" name="rgSize" ng-value="selectedDrive.rg_size_dp_default" ng-model="rgSize">
+        <label for"rgSizeDefault">
+          <input id="rgSizeDefault" type="radio" name="rgSize" ng-value="rgSizeDefault()" ng-model="rgSize">
         Default
         </label>
-        <label>
-          <input type="radio" name="rgSize" ng-value="" ng-model="rgSize">
-        Custom
+        <label for"rgSizeMax">
+          <input id="rgSizeMax" type="radio" name="rgSize" ng-value="rgSizeMax()" ng-model="rgSize">
+        Max
         </label>
+        <!-- <label for"rgSizeOther">
+          <input id="rgSizeOther" type="radio" name="rgSize" ng-value="" ng-model="rgSize">
+        Other
+        </label> -->
       </form>
 
       <br>
@@ -95,15 +79,26 @@
       <select name="selectedOutputUnit" ng-model="selectedOutputUnit" ng-options="unit.iec as unit.displayName for unit in outputUnits | filter:{base:2}"></select>
       <br>
       <br>
-      Selected Drive Physical Size: {{ selectedDrive.physical_size_mib | number }} MiB <br>
-      Selected Drive Right Size: {{ selectedDrive.right_size_mib | number }} MiB<br>
+
+      <hr><br>
+      Usable Drives: {{ usableDrives() }} <br>
+      Parity Drives: {{ parityDrives() }} <br>
+      Data Drives: {{ dataDrives() }} <br>
       <br>
-
-      <!-- OUTPUTS -->
-
+      Total Drive Efficiency: {{ totalDriveEfficiency() | number:2 }}% <br>
+      Usable Drive Efficiency: {{ usableDriveEfficiency() | number:2 }}% <br>
+      <br>
+      RG Size: {{ rgSize }} <br>
+      Number of Raid Groups: {{ numRaidGroups() }} <br>
+      <br>
+      RG Size Max: {{ rgSizeMax() }} <br>
+      RG Size Default: {{ rgSizeDefault() }} <br>
+      RG Size Min: {{ rgSizeMin() }} <br>
+      <br>
       <!-- Selected Drive Details -->
       <p>Model #: {{ selectedDrive.model_num }}</p>
       <p>Marketed Size: {{ selectedDrive.mkt_size }} GB</p>
+      <p>Physical Size: {{ selectedDrive.physical_size_mib | number }} MiB</p>
       <p>Right Size: {{ selectedDrive.right_size_mib | number}} MiB</p>
       <p>Drive Type: {{ selectedDrive.type }}</p>
       <p>Drive Speed: {{ selectedDrive.rpm_speed | number }} RPM</p>
@@ -112,16 +107,16 @@
 
       <!-- Calculated Outputs -->
       <br>Outputs:<br><br>
-      Total Raw Capacity: {{ totalRawCapacity() | base10convert:2:'GB' }} <br>
+      Total Base 10 Capacity: {{ totalRawCapacity() | base10convert:2:'GB' }} <br>
       Total Base 2 Capacity: {{ totalPhysicalCapacity() | base2convert:2:'MiB':selectedOutputUnit }} <br>
       Total Right Size Capacity: {{ totalRightSizeCapacity() | base2convert:2:'MiB':selectedOutputUnit }} <br>
       <br>
-      Total Aggregate Capacity: {{ aggrCapacity() | base2convert:2:'MiB':selectedOutputUnit }} <br>
+      Aggregate Usable Capacity: {{ aggrCapacity() | base2convert:2:'MiB':selectedOutputUnit }} <br>
       Volume Usable Capacity: {{ volumeCapacity() | base2convert:2:'MiB':selectedOutputUnit }} <br>
       <br>
+      <!-- End Calculated Outputs -->
 
-
-    </div> <!-- Enc Calculator.html -->
+    </div> <!-- End Calculator.html -->
 
 
     <!-- <div ng-include="'drive_table.html'"></div>  -->

@@ -55,7 +55,7 @@
     $scope.totalRawCapacity = function () {
       return $scope.totalDrives * $scope.selectedDrive.mkt_size;
     };
-    // total physical capacity, base 2 before right-sizing
+    // total physical capacity, base 2, before right-sizing
     $scope.totalPhysicalCapacity = function () {
       return $scope.totalDrives * $scope.selectedDrive.physical_size_mib;
     };
@@ -71,6 +71,27 @@
     $scope.volumeCapacity = function () {
       return ($scope.aggrCapacity() * 0.9) * 0.995;
     };
+
+    $scope.rgSizeMin = function () {
+      return $scope.selectedRaidType.parity_drives + 1;
+    };
+
+    $scope.rgSizeMax = function () {
+      if ($scope.selectedRaidType.name === "raid4") {
+        return $scope.selectedDrive.rg_size_4_max;
+      } else {
+        return $scope.selectedDrive.rg_size_dp_max;
+      }
+    };
+
+    $scope.rgSizeDefault = function () {
+      if ($scope.selectedRaidType.name === "raid4") {
+        return $scope.selectedDrive.rg_size_4_default;
+      } else {
+        return $scope.selectedDrive.rg_size_dp_default;
+      }
+    };
+
 
   }); // close controller
 
