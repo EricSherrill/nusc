@@ -92,6 +92,23 @@
       }
     };
 
+    $scope.rgDeficiency = function () {
+      return ($scope.numRaidGroups() * $scope.rgSize) - $scope.usableDrives();
+    };
+
+    $scope.dataDrivesPerRaidGroup = function () {
+      return $scope.rgSize - $scope.selectedRaidType.parity_drives;
+    };
+
+    $scope.deficiencyWarning = function () {
+      if ($scope.rgDeficiency() >= $scope.dataDrivesPerRaidGroup()) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+
 
   }); // close controller
 

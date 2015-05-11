@@ -3,9 +3,10 @@
 
   <head>
     <head>
-      <script data-require="angular.js@1.4.0-rc.1" data-semver="1.4.0-rc.1" src="https://code.angularjs.org/1.4.0-rc.1/angular.js"></script>
+      <script data-require="angular.js@1.3.15" data-semver="1.3.15" src="https://code.angularjs.org/1.3.15/angular.js"></script>
       <link rel="stylesheet" href="style.css" />
       <script src="arrays.js"></script>
+      <script src="math.js"></script>
       <script src="main.js"></script>
   </head>
 
@@ -94,15 +95,20 @@
       <!-- End Calculated Outputs -->
 
       Usable Drives: {{ usableDrives() }} <br>
+      RG Size: {{ rgSize }} <br>
+      Number of Raid Groups: {{ numRaidGroups() }} <br>
       Parity Drives: {{ parityDrives() }} <br>
       Data Drives: {{ dataDrives() }} <br>
       <br>
+      ---------------<br>
+      Deficiency: {{ rgDeficiency() }} <br>
+      DD's per RG: {{ dataDrivesPerRaidGroup() }} <br>
+      Warning: {{ deficiencyWarning() }} <br>
+      ---------------<br>
       Total Drive Efficiency: {{ totalDriveEfficiency() | number:2 }}% <br>
       Usable Drive Efficiency: {{ usableDriveEfficiency() | number:2 }}% <br>
       <br>
-      RG Size: {{ rgSize }} <br>
-      Number of Raid Groups: {{ numRaidGroups() }} <br>
-      <br>
+
       RG Size Max: {{ rgSizeMax() }} <br>
       RG Size Default: {{ rgSizeDefault() }} <br>
       RG Size Min: {{ rgSizeMin() }} <br>
