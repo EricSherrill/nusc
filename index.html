@@ -19,11 +19,11 @@
       <!-- INPUTS -->
 
       <label for="totalDrives">Total Drives:</label>
-      <input type="number" name="totalDrives" ng-model="totalDrives">
+      <input type="number" min="0" max="240" name="totalDrives" ng-model="totalDrives">
       <br>
 
       <label for="spareDrives">Spare Drives:</label>
-      <input type="number" name="spareDrives" ng-model="spareDrives">
+      <input type="number" min="0" max="14" name="spareDrives" ng-model="spareDrives">
       <br>
 
       <label for="rootDrives">Root Drives:</label>
@@ -81,6 +81,18 @@
       <br>
 
       <hr><br>
+
+      <!-- Calculated Outputs -->
+      <br>Outputs:<br><br>
+      Total Base 10 Capacity: {{ totalRawCapacity() | base10convert:2:'GB' }} <br>
+      Total Base 2 Capacity: {{ totalPhysicalCapacity() | base2convert:2:'MiB':selectedOutputUnit }} <br>
+      Total Right Size Capacity: {{ totalRightSizeCapacity() | base2convert:2:'MiB':selectedOutputUnit }} <br>
+      <br>
+      Aggregate Usable Capacity: {{ aggrCapacity() | base2convert:2:'MiB':selectedOutputUnit }} <br>
+      Volume Usable Capacity: {{ volumeCapacity() | base2convert:2:'MiB':selectedOutputUnit }} <br>
+      <br>
+      <!-- End Calculated Outputs -->
+
       Usable Drives: {{ usableDrives() }} <br>
       Parity Drives: {{ parityDrives() }} <br>
       Data Drives: {{ dataDrives() }} <br>
@@ -105,16 +117,6 @@
 
       <!-- End Selected Drive Details -->
 
-      <!-- Calculated Outputs -->
-      <br>Outputs:<br><br>
-      Total Base 10 Capacity: {{ totalRawCapacity() | base10convert:2:'GB' }} <br>
-      Total Base 2 Capacity: {{ totalPhysicalCapacity() | base2convert:2:'MiB':selectedOutputUnit }} <br>
-      Total Right Size Capacity: {{ totalRightSizeCapacity() | base2convert:2:'MiB':selectedOutputUnit }} <br>
-      <br>
-      Aggregate Usable Capacity: {{ aggrCapacity() | base2convert:2:'MiB':selectedOutputUnit }} <br>
-      Volume Usable Capacity: {{ volumeCapacity() | base2convert:2:'MiB':selectedOutputUnit }} <br>
-      <br>
-      <!-- End Calculated Outputs -->
 
     </div> <!-- End Calculator.html -->
 
