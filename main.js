@@ -1,6 +1,6 @@
 (function() {
 
-  var app = angular.module('app', [])
+  var app = angular.module('app', ['ui.bootstrap'])
 
   .controller('MainController', function($scope) {
 
@@ -108,6 +108,7 @@
       }
     };
 
+    // add balancedAggrWarning, suggest better option?
 
 
   }); // close controller

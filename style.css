@@ -1,2 +1,6 @@
 /* Styles go here */
 
+.hr-black {
+  background-color: black;
+  height: 1px;
+}
