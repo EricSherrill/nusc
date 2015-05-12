@@ -4,3 +4,11 @@
   background-color: black;
   height: 1px;
 }
+
+#vol-usable-capacity {
+  color: #0066C5;
+}
+
+#aggr-usable-capacity {
+  color: black;
+}

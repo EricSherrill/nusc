@@ -64,12 +64,32 @@
       return $scope.totalDrives * $scope.selectedDrive.right_size_mib;
     };
 
-    $scope.aggrCapacity = function () {
+    $scope.aggrTotalCapacity = function () {
       return $scope.dataDrives() * $scope.selectedDrive.right_size_mib;
     };
+    // account for aggr reserve
+    $scope.aggrUsableCapacity = function () {
+      if ($scope.aggrReserve == 0) {
+        return $scope.aggrTotalCapacity();
+      } else {
+        return $scope.aggrTotalCapacity() * (1 - ($scope.aggrReserve / 100));
+      }
+    };
     // TR-3838, page 9
-    $scope.volumeCapacity = function () {
-      return ($scope.aggrCapacity() * 0.9) * 0.995;
+    $scope.volTotalCapacity = function () {
+      return ($scope.aggrTotalCapacity() * 0.9) * 0.995;
+    };
+    // account for snap reserve
+    $scope.volUsableCapacity = function () {
+      if ($scope.snapReserve == 0) {
+        return $scope.volTotalCapacity();
+      } else {
+        return $scope.volTotalCapacity() * (1 - ($scope.snapReserve / 100));
+      }
+    };
+
+    $scope.volUsableEfficiency = function () {
+      return ($scope.volUsableCapacity() / $scope.totalRightSizeCapacity()) * 100;
     };
 
     $scope.rgSizeMin = function () {
