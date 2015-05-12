@@ -21,88 +21,90 @@
     <div class="container">
       <h1>NetApp Usable Space Calculator</h1>
       <hr class="hr-black">
-      <br><br><br>
+      <br><br>
     </div>
 
     <div class="container"> <!-- Calculator.html -->
       <div class="row">
+        <div class="col-xs-6">  <!-- Outer Column -->
 
-        <!-- INPUTS -->
-        <div class="col-xs-3"> <!-- Column 1 -->
+          <h4>Inputs: </h4>
 
           <hr class="hr-black">
 
-          <div class="form">
-            <div class="form-group">
-              <label for="totalDrives">Total Drives:</label>
-              <input class="form-control" type="number" min="0" max="999" name="totalDrives" ng-model="totalDrives">
+          <div class="row">
+            <!-- INPUTS -->
+            <div class="col-xs-6"> <!-- Column 1 -->
+
+              <div class="form">
+                <div class="form-group">
+                  <label for="totalDrives">Total Drives:</label>
+                  <input class="form-control" type="number" min="0" max="999" name="totalDrives" ng-model="totalDrives">
+                </div>
+
+                <div class="form-group">
+                  <label for="spareDrives">Spare Drives:</label>
+                  <input class="form-control" type="number" name="spareDrives" min="0" max="999" name="spareDrives" ng-model="spareDrives">
+                </div>
+
+                <div class="form-group">
+                  <label for="rootDrives">Root Drives:</label>
+                  <input class="form-control" type="number" min="0" max="9" name="rootDrives" ng-model="rootDrives">
+                </div>
+
+                <div class="form-group">
+                  <label for="selectedDrive">Select Drive:</label>
+                  <select  class="form-control" name="selectedDrive" ng-model="selectedDrive" ng-options="(drive.mkt_size + ' GB - ' + drive.type) for drive in drives | unique:'right_size_mib' | orderBy:'-mkt_size'"></select>
+                </div>
+
+                <div class="form-group">
+                  <label for="rgSize">Raid Group Size:</label>
+                  <input class="form-control" type="number" min="0" max="28" name="rgSize" ng-model="rgSize">
+                </div>
+
+                <div class="btn-group btn-group-sm pull-right">
+                  <label class="btn btn-default" ng-model="rgSize" btn-radio="rgSizeMin()">Min</label>
+                  <label class="btn btn-default" ng-model="rgSize" btn-radio="rgSizeDefault()">Default</label>
+                  <label class="btn btn-default" ng-model="rgSize" btn-radio="rgSizeMax()">Max</label>
+                </div>
+
+              </div>
             </div>
 
-            <div class="form-group">
-              <label for="spareDrives">Spare Drives:</label>
-              <input class="form-control" type="number" name="spareDrives" min="0" max="999" name="spareDrives" ng-model="spareDrives">
-            </div>
 
-            <div class="form-group">
-              <label for="rootDrives">Root Drives:</label>
-              <input class="form-control" type="number" min="0" max="9" name="rootDrives" ng-model="rootDrives">
-            </div>
+            <div class="col-xs-6"> <!-- Column 2 -->
 
-            <div class="form-group">
-              <label for="selectedDrive">Select Drive:</label>
-              <select  class="form-control" name="selectedDrive" ng-model="selectedDrive" ng-options="(drive.mkt_size + ' GB - ' + drive.type) for drive in drives | unique:'right_size_mib' | orderBy:'-mkt_size'"></select>
-            </div>
+              <div class="form">
 
-            <div class="form-group">
-              <label for="rgSize">Raid Group Size:</label>
-              <input class="form-control" type="number" min="0" max="28" name="rgSize" ng-model="rgSize">
-            </div>
+                <div class="form-group">
+                  <label for="selectedRaidType">Select RAID Type:</label>
+                  <select class="form-control" name="selectedRaidType" ng-model="selectedRaidType" ng-options="(raid.displayName) for raid in raidTypes"></select>
+                </div>
 
-            <div class="btn-group btn-group-sm pull-right">
-              <label class="btn btn-default" ng-model="rgSize" btn-radio="rgSizeMin()">Min</label>
-              <label class="btn btn-default" ng-model="rgSize" btn-radio="rgSizeDefault()">Default</label>
-              <label class="btn btn-default" ng-model="rgSize" btn-radio="rgSizeMax()">Max</label>
-            </div>
+                <div class="form-group">
+                  <label for="aggrReserve">Aggregate Reserve %:</label>
+                  <input class="form-control" type="number" min="0" max="99" name="aggrReserve" ng-model="aggrReserve">
+                </div>
 
+                <div class="form-group">
+                  <label for="snapReserve">Snapshot Reserve %:</label>
+                  <input class="form-control" type="number" min="0" max="99" name="snapReserve" ng-model="snapReserve">
+                </div>
+
+
+                <div class="form-group"><!-- waflReserve should not be configurable -->
+                  <label for="waflReserve">WAFL Reserve %:</label>
+                  <input class="form-control" type="number" min="10" max="10" name="waflReserve" ng-model="waflReserve">
+                </div>
+
+                <div class="form-group">
+                  <label for="selectedOutputUnit">Select Output Unit:</label>
+                  <select class="form-control" name="selectedOutputUnit" ng-model="selectedOutputUnit" ng-options="unit.iec as unit.displayName for unit in outputUnits | filter:{base:2}"></select>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
-
-      <div class="col-xs-3"> <!-- Column 2 -->
-
-
-        <hr class="hr-black">
-
-        <div class="form">
-
-          <div class="form-group">
-            <label for="selectedRaidType">Select RAID Type:</label>
-            <select class="form-control" name="selectedRaidType" ng-model="selectedRaidType" ng-options="(raid.displayName) for raid in raidTypes"></select>
-          </div>
-
-          <div class="form-group">
-            <label for="aggrReserve">Aggregate Reserve %:</label>
-            <input class="form-control" type="number" min="0" max="99" name="aggrReserve" ng-model="aggrReserve">
-          </div>
-
-          <div class="form-group">
-            <label for="snapReserve">Snapshot Reserve %:</label>
-            <input class="form-control" type="number" min="0" max="99" name="snapReserve" ng-model="snapReserve">
-          </div>
-
-
-          <div class="form-group"><!-- waflReserve should not be configurable -->
-            <label for="waflReserve">WAFL Reserve %:</label>
-            <input class="form-control" type="number" min="10" max="10" name="waflReserve" ng-model="waflReserve">
-          </div>
-
-          <div class="form-group">
-            <label for="selectedOutputUnit">Select Output Unit:</label>
-            <select class="form-control" name="selectedOutputUnit" ng-model="selectedOutputUnit" ng-options="unit.iec as unit.displayName for unit in outputUnits | filter:{base:2}"></select>
-          </div>
-          </div>
-      </div>
-
       <!-- OUTPUT -->
 
       <div class="col-xs-3"> <!-- COLUMN 3 -->
