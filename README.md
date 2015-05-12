@@ -1,2 +1,3 @@
 #NetApp Usable Space Calculator
-unusable now, just getting started
+
+Beta/Testing, not for public use... yet.
