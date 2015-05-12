@@ -45,7 +45,7 @@
 
             <div class="form-group">
               <label for="rootDrives">Root Drives:</label>
-              <input class="form-control" type="number" min="0" max="99" name="rootDrives" ng-model="rootDrives">
+              <input class="form-control" type="number" min="0" max="9" name="rootDrives" ng-model="rootDrives">
             </div>
 
             <div class="form-group">
@@ -55,7 +55,7 @@
 
             <div class="form-group">
               <label for="rgSize">Raid Group Size:</label>
-              <input class="form-control" type="number" min="2" max="28" name="rgSize" ng-model="rgSize">
+              <input class="form-control" type="number" min="0" max="28" name="rgSize" ng-model="rgSize">
             </div>
 
             <div class="btn-group btn-group-sm pull-right">
@@ -70,6 +70,7 @@
 
       <div class="col-xs-3"> <!-- Column 2 -->
 
+
         <hr class="hr-black">
 
         <div class="form">
@@ -81,12 +82,12 @@
 
           <div class="form-group">
             <label for="aggrReserve">Aggregate Reserve %:</label>
-            <input class="form-control" type="number" name="aggrReserve" ng-model="aggrReserve">
+            <input class="form-control" type="number" min="0" max="99" name="aggrReserve" ng-model="aggrReserve">
           </div>
 
           <div class="form-group">
             <label for="snapReserve">Snapshot Reserve %:</label>
-            <input class="form-control" type="number" name="snapReserve" ng-model="snapReserve">
+            <input class="form-control" type="number" min="0" max="99" name="snapReserve" ng-model="snapReserve">
           </div>
 
 
@@ -123,7 +124,10 @@
         <p><b>RG Size Max:</b> <span class="pull-right">{{ rgSizeMax() }}</span></p>
         <p><b>RG Size Default:</b> <span class="pull-right">{{ rgSizeDefault() }}</span></p>
         <p><b>RG Size Min:</b> <span class="pull-right">{{ rgSizeMin() }}</span></p>
-        <!-- Include Suggested Range ??? -->
+
+        <div ng-show="selectedRaidType.name == 'raidDP'">
+          <p><b>RG Suggested Range:</b> <span class="pull-right">{{ selectedDrive.rg_suggested_dp_min }} - {{ selectedDrive.rg_suggested_dp_max }}</span></p>
+        </div>
 
       </div>
 
@@ -140,18 +144,14 @@
         <hr class="hr-black">
 
         <p><b>Usable Drives:</b> <span class="pull-right">{{ usableDrives() }}</span></p>
-        <p><b>RG Size:</b> <span class="pull-right">{{ rgSize }}</span></p>
         <p><b>Number of Raid Groups:</b> <span class="pull-right">{{ numRaidGroups() }}</span></p>
         <p><b>Parity Drives:</b> <span class="pull-right">{{ parityDrives() }}</span></p>
         <p><b>Data Drives:</b> <span class="pull-right">{{ dataDrives() }}</span></p>
 
-        <p><b>Deficiency:</b> <span class="pull-right">{{ rgDeficiency() }}</span></p>
-        <p><b>Data Drive's per RG:</b> <span class="pull-right">{{ dataDrivesPerRaidGroup() }}</span></p>
-        <p><b>Deficiency Warning:</b> <span class="pull-right">{{ deficiencyWarning() }}</span></p>
-
         <p><b>Total Drive Efficiency:</b> <span class="pull-right">{{ totalDriveEfficiency() | number:2 }}%</span></p>
         <p><b>Usable Drive Efficiency:</b> <span class="pull-right">{{ usableDriveEfficiency() | number:2 }}%</span></p>
-        <p><b>Volume Usable Efficiency:</b> <span class="pull-right">{{ volumeUsableEfficiency() | number:2 }}%</span></p>
+
+        <hr class="hr-black">
 
         <p><b>Aggregate Usable Capacity:</b>
           <span class="pull-right" id="aggr-usable-capacity">{{ aggrUsableCapacity() | base2convert:2:'MiB':selectedOutputUnit }}</span></p>
