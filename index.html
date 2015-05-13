@@ -18,10 +18,9 @@
 
   <body ng-controller="MainController">
 
-    <div class="container">
-      <h1>NetApp Usable Space Calculator <small>beta</small></h1>
-      <hr class="hr-black">
-      <br><br>
+    <div class="container">  <!-- http://www.netapp.com/us/media/tr-3838.pdf -->
+      <h1>NetApp Usable Space Calculator <small>(beta) based on TR-3838</small></h1>
+      <br><br><br>
     </div>
 
     <div class="container"> <!-- Calculator.html -->
@@ -94,7 +93,7 @@
 
                 <div class="form-group"><!-- waflReserve should not be configurable -->
                   <label for="waflReserve">WAFL Reserve %:</label>
-                  <input class="form-control" type="number" min="10" max="10" name="waflReserve" ng-model="waflReserve">
+                  <input class="form-control" type="number" min="10" max="10" name="waflReserve" ng-model="waflReserve" readonly>
                 </div>
 
                 <div class="form-group">
@@ -164,7 +163,16 @@
       </div>
     </div>
   </div> <!-- End Calculator.html -->
+  <br><br>
+  <div class="container"> <!-- Errors??? -->
 
+    <div ng-show="smallRgWarning()">
+      <alert type="{{ alerts[0].type }}">{{ alerts[0].msg }}</alert>
+    </div>
+
+
+
+  </div> <!-- End Errors -->
 
   <!-- <div ng-include="'drive_table.html'"></div>  -->
 </body>

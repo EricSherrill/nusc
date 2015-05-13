@@ -51,3 +51,7 @@ var raidTypes = [
 {"displayName": "RAID-DP", "name": "raidDP", "parity_drives": 2},
 {"displayName": "RAID-4", "name": "raid4", "parity_drives": 1}
 ];
+
+var alerts = [
+  {"name": "smallRgWarning", "type": "danger", "msg": "Last Raid Group Too Small! Change number of usable drives and/or raid group size." }
+];

@@ -4,10 +4,11 @@
 
   .controller('MainController', function($scope) {
 
-    // import from drives.js
+    // import from arrays.js
     $scope.drives = drives;
     $scope.outputUnits = outputUnits;
     $scope.raidTypes = raidTypes;
+    $scope.alerts = alerts;
 
     // drive_table.html settings
     $scope.sortType = "-mkt_size";
@@ -120,7 +121,7 @@
       return $scope.rgSize - $scope.selectedRaidType.parity_drives;
     };
 
-    $scope.deficiencyWarning = function () {
+    $scope.smallRgWarning = function () {
       if ($scope.rgDeficiency() >= $scope.dataDrivesPerRaidGroup()) {
         return true;
       } else {
