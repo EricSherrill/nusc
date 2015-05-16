@@ -38,17 +38,17 @@
               <div class="form">
                 <div class="form-group">
                   <label for="totalDrives">Total Drives:</label>
-                  <input class="form-control" type="number" min="0" max="999" name="totalDrives" ng-model="totalDrives">
+                  <input class="form-control" type="number" min="1" max="9999" name="totalDrives" ng-model="totalDrives" placeholder="Total Number of Drives">
                 </div>
 
                 <div class="form-group">
                   <label for="spareDrives">Spare Drives:</label>
-                  <input class="form-control" type="number" name="spareDrives" min="0" max="999" name="spareDrives" ng-model="spareDrives">
+                  <input class="form-control" type="number" name="spareDrives" min="0" max="99" name="spareDrives" ng-model="spareDrives" placeholder="Number of Spare Drives">
                 </div>
 
                 <div class="form-group">
                   <label for="rootDrives">Root Drives:</label>
-                  <input class="form-control" type="number" min="0" max="9" name="rootDrives" ng-model="rootDrives">
+                  <input class="form-control" type="number" min="0" max="9" name="rootDrives" ng-model="rootDrives" placeholder="Number of Root Aggr Drives">
                 </div>
 
                 <div class="form-group">
@@ -58,7 +58,7 @@
 
                 <div class="form-group">
                   <label for="rgSize">Raid Group Size:</label>
-                  <input class="form-control" type="number" min="0" max="28" name="rgSize" ng-model="rgSize">
+                  <input class="form-control" type="number" min="0" max="28" name="rgSize" ng-model="rgSize" placeholder="Raid Group Size">
                 </div>
 
                 <div class="btn-group btn-group-sm pull-right">
@@ -82,12 +82,12 @@
 
                 <div class="form-group">
                   <label for="aggrReserve">Aggregate Reserve %:</label>
-                  <input class="form-control" type="number" min="0" max="99" name="aggrReserve" ng-model="aggrReserve">
+                  <input class="form-control" type="number" min="0" max="99" name="aggrReserve" ng-model="aggrReserve" placeholder="Aggr Reserve %">
                 </div>
 
                 <div class="form-group">
                   <label for="snapReserve">Snapshot Reserve %:</label>
-                  <input class="form-control" type="number" min="0" max="99" name="snapReserve" ng-model="snapReserve">
+                  <input class="form-control" type="number" min="0" max="99" name="snapReserve" ng-model="snapReserve" placeholder="Snapshot Reserve %">
                 </div>
 
 
@@ -145,10 +145,9 @@
         <hr class="hr-black">
 
         <p><b>Usable Drives:</b> <span class="pull-right">{{ usableDrives() }}</span></p>
-        <p><b>Number of Raid Groups:</b> <span class="pull-right">{{ numRaidGroups() }}</span></p>
+        <p><b>Number of Raid Groups:</b> <span class="pull-right">{{ numRaidGroups() | number:2 }}</span></p>
         <p><b>Parity Drives:</b> <span class="pull-right">{{ parityDrives() }}</span></p>
         <p><b>Data Drives:</b> <span class="pull-right">{{ dataDrives() }}</span></p>
-
         <p><b>Total Drive Efficiency:</b> <span class="pull-right">{{ totalDriveEfficiency() | number:2 }}%</span></p>
         <p><b>Usable Drive Efficiency:</b> <span class="pull-right">{{ usableDriveEfficiency() | number:2 }}%</span></p>
 

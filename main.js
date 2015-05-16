@@ -34,11 +34,23 @@
     };
 
     $scope.numRaidGroups = function () {
-      return Math.ceil($scope.usableDrives() / $scope.rgSize);
+      return $scope.usableDrives() / $scope.rgSize;
+    };
+
+    $scope.rgDeficiency = function () {
+      return (Math.ceil($scope.numRaidGroups()) * $scope.rgSize) - $scope.usableDrives();
+    };
+
+    $scope.partialRG = function () {
+      return $scope.rgSize - $scope.rgDeficiency();
     };
 
     $scope.parityDrives = function() {
-      return $scope.numRaidGroups() * $scope.selectedRaidType.parity_drives;
+      if ($scope.partialRG() < $scope.selectedRaidType.parity_drives) {
+        return Math.floor(($scope.numRaidGroups() * $scope.selectedRaidType.parity_drives) + 1);
+      } else {
+        return Math.ceil($scope.numRaidGroups()) * $scope.selectedRaidType.parity_drives;
+      }
     };
 
     $scope.dataDrives = function() {
@@ -113,16 +125,12 @@
       }
     };
 
-    $scope.rgDeficiency = function () {
-      return ($scope.numRaidGroups() * $scope.rgSize) - $scope.usableDrives();
-    };
-
     $scope.dataDrivesPerRaidGroup = function () {
       return $scope.rgSize - $scope.selectedRaidType.parity_drives;
     };
 
     $scope.smallRgWarning = function () {
-      if ($scope.rgDeficiency() >= $scope.dataDrivesPerRaidGroup()) {
+      if ($scope.partialRG() <= $scope.selectedRaidType.parity_drives) {
         return true;
       } else {
         return false;
