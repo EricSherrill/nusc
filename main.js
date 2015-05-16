@@ -72,7 +72,7 @@
     $scope.totalPhysicalCapacity = function () {
       return $scope.totalDrives * $scope.selectedDrive.physical_size_mib;
     };
-    // total right size capacity, base 2
+    // total right-size capacity, base 2
     $scope.totalRightSizeCapacity = function () {
       return $scope.totalDrives * $scope.selectedDrive.right_size_mib;
     };
@@ -137,7 +137,9 @@
       }
     };
 
-    // add balancedAggrWarning, suggest better option?
+    $scope.usableCapacityEfficiency = function () {
+      return ($scope.volUsableCapacity() / $scope.totalPhysicalCapacity()) * 100;
+    };
 
 
   }); // close controller
