@@ -6,7 +6,7 @@ Based on the NetApp Technical Report [TR-3838](http://www.netapp.com/us/media/tr
 
 This is to help with capacity sizings for various drive, protection and reserve configurations on Data ONTAP and uses the calculations from that document.
 
-Feel free to email me at jpl1079-at-gmail-dot-com with any questions or use GitHub to report any issues.
+Please use the Issues tool to report any issues.
 
 ####Known Issues:
 - You might see some JavaScript "NaN", "Infinite" or "undefined" in the output.  This is because there isn't much input validation going on (other than simple HTML form validation).  This should only occur in the lower/upper bounds of some inputs and not with any normal configurations.
