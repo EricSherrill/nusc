@@ -1,3 +1,13 @@
 #NetApp Usable Space Calculator
 
-Beta/Testing, not for public use... yet.
+**This is not an official NetApp tool.**
+
+Based on the NetApp Technical Report [TR-3838](http://www.netapp.com/us/media/tr-3838.pdf), Storage Subsystem Configuration Guide.
+
+This is to help with capacity sizings for various drive, protection and reserve configurations on Data ONTAP and uses the calculations from that TR.
+
+
+
+
+
+
