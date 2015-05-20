@@ -17,6 +17,7 @@ Feel free to email me at jpl1079-at-gmail-dot-com with any questions or use GitH
 
 - Snapshot Reserve (aka Volume Reserve) is set to 0% in this tool by default.  This may not be the default when creating volumes in Data ONTAP.  This tool also does not account for any additional capacity other tools may take into consideration when using these various reserve capacities.  For example: some tools may ask for a _usable_ volume size and then calculate the _actual_ volume size based on the reserve settings.
 
+- LUN sizing is not available.
 
 
 
