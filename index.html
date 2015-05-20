@@ -19,8 +19,9 @@
   <body ng-controller="MainController">
 
     <div class="container">  <!-- http://www.netapp.com/us/media/tr-3838.pdf -->
-      <h1>NetApp Usable Space Calculator <small>(beta) based on TR-3838</small></h1>
-      <br><br><br>
+      <br>
+      <h1>NetApp Usable Space Calculator <small>(beta) based on <a href="http://www.netapp.com/us/media/tr-3838.pdf" target="_blank">TR-3838</a></small></h1>
+      <br><br>
     </div>
 
     <div class="container card"> <!-- Calculator.html -->
@@ -112,23 +113,21 @@
 
         <hr class="hr-black">
 
-        <p><b>Model Number:</b> <span class="pull-right">{{ selectedDrive.model_num }}</span></p>
-        <p><b>Marketed Size:</b> <span class="pull-right">{{ selectedDrive.mkt_size }} GB</span></p>
-        <p><b>Physical Size:</b> <span class="pull-right">{{ selectedDrive.physical_size_mib | number }} MiB</span></p>
-        <p><b>Right Size:</b> <span class="pull-right">{{ selectedDrive.right_size_mib | number}} MiB</span></p>
-        <p><b>Drive Type:</b> <span class="pull-right">{{ selectedDrive.type }}</span></p>
-        <p><b>Drive Speed:</b> <span class="pull-right">{{ selectedDrive.rpm_speed | number }} RPM</span></p>
-        <p ng-show="selectedDrive.encrypted"><b>Encrypted:</b> <span class="pull-right">{{ selectedDrive.encrypted }}</span></p>
+        <p><b><a href="#" tooltip="{{tooltips.modelNum}}">Model Number:</a></b> <span class="pull-right">{{ selectedDrive.model_num }}</span></p>
+        <p><b><a href="#" tooltip="{{tooltips.mkt_size}}">Marketed Size:</a></b> <span class="pull-right">{{ selectedDrive.mkt_size }} GB</span></p>
+        <p><b><a href="#" tooltip="{{tooltips.physical_size}}">Physical Size:</a></b> <span class="pull-right">{{ selectedDrive.physical_size_mib | number }} MiB</span></p>
+        <p><b><a href="#" tooltip="{{tooltips.right_size}}">Right Size:</a></b> <span class="pull-right">{{ selectedDrive.right_size_mib | number}} MiB</span></p>
+        <p><b><a href="#" tooltip="{{tooltips.type}}">Drive Type:</a></b> <span class="pull-right">{{ selectedDrive.type }}</span></p>
+        <p><b><a href="#" tooltip="{{tooltips.rpm_speed}}">Drive Speed:</a></b> <span class="pull-right">{{ selectedDrive.rpm_speed | number }} RPM</span></p>
+        <p><b><a href="#" tooltip="{{tooltips.encrypted}}">Encrypted:</a></b> <span class="pull-right">{{ selectedDrive.encrypted }}</span></p>
 
         <hr class="hr-black">
 
-        <p><b>RG Size Max:</b> <span class="pull-right">{{ rgSizeMax() }}</span></p>
-        <p><b>RG Size Default:</b> <span class="pull-right">{{ rgSizeDefault() }}</span></p>
-        <p><b>RG Size Min:</b> <span class="pull-right">{{ rgSizeMin() }}</span></p>
+        <p><b><a href="#" tooltip="{{tooltips.rgSizeMax}}">RG Size Max:</a></b> <span class="pull-right">{{ rgSizeMax() }}</span></p>
+        <p><b><a href="#" tooltip="{{tooltips.rgSizeDefault}}">RG Size Default:</a></b> <span class="pull-right">{{ rgSizeDefault() }}</span></p>
+        <p><b><a href="#" tooltip="{{tooltips.rgSizeMin}}">RG Size Min:</a></b> <span class="pull-right">{{ rgSizeMin() }}</span></p>
+        <p><b><a href="#" tooltip="{{tooltips.rgSuggestedRange}}">RG Suggested Range:</a></b> <span class="pull-right">{{ selectedDrive.rg_suggested_dp_min }} - {{ selectedDrive.rg_suggested_dp_max }}</span></p>
 
-        <div ng-show="selectedRaidType.name == 'raidDP'">
-          <p><b>RG Suggested Range:</b> <span class="pull-right">{{ selectedDrive.rg_suggested_dp_min }} - {{ selectedDrive.rg_suggested_dp_max }}</span></p>
-        </div>
 
       </div>
 
@@ -138,26 +137,26 @@
 
         <hr class="hr-black">
 
-        <p><b>Total Base 10 Capacity:</b> <span class="pull-right">{{ totalRawCapacity() | base10convert:2:'GB' }}</span></p>
-        <p><b>Total Base 2 Capacity:</b> <span class="pull-right">{{ totalPhysicalCapacity() | base2convert:2:'MiB':selectedOutputUnit }}</span></p>
-        <p><b>Total Right Size Capacity:</b> <span class="pull-right">{{ totalRightSizeCapacity() | base2convert:2:'MiB':selectedOutputUnit }}</span></p>
+        <p><b><a href="#" tooltip="{{tooltips.totalMarketedCapacity}}">Total Base 10 Capacity:</a></b> <span class="pull-right">{{ totalRawCapacity() | base10convert:2:'GB' }}</span></p>
+        <p><b><a href="#" tooltip="{{tooltips.totalPhysicalCapacity}}">Total Base 2 Capacity:</a></b> <span class="pull-right">{{ totalPhysicalCapacity() | base2convert:2:'MiB':selectedOutputUnit }}</span></p>
+        <p><b><a href="#" tooltip="{{tooltips.totalRightSizeCapacity}}">Total Right Size Capacity:</a></b> <span class="pull-right">{{ totalRightSizeCapacity() | base2convert:2:'MiB':selectedOutputUnit }}</span></p>
 
         <hr class="hr-black">
 
-        <p><b>Usable Drives:</b> <span class="pull-right">{{ usableDrives() }}</span></p>
-        <p><b>Number of Raid Groups:</b> <span class="pull-right">{{ numRaidGroups() | number:2 }}</span></p>
-        <p><b>Parity Drives:</b> <span class="pull-right">{{ parityDrives() }}</span></p>
-        <p><b>Data Drives:</b> <span class="pull-right">{{ dataDrives() }}</span></p>
+        <p><b><a href="#" tooltip="{{tooltips.usableDrives}}">Usable Drives:</a></b> <span class="pull-right">{{ usableDrives() }}</span></p>
+        <p><b><a href="#" tooltip="{{tooltips.numRGs}}">Number of Raid Groups:</a></b> <span class="pull-right">{{ numRaidGroups() | number:2 }}</span></p>
+        <p><b><a href="#" tooltip="{{tooltips.parityDrives}}">Parity Drives:</a></b> <span class="pull-right">{{ parityDrives() }}</span></p>
+        <p><b><a href="#" tooltip="{{tooltips.dataDrives}}">Data Drives:</a></b> <span class="pull-right">{{ dataDrives() }}</span></p>
         <!-- <p><b>Total Drive Efficiency:</b> <span class="pull-right">{{ totalDriveEfficiency() | number:2 }}%</span></p> -->
-        <p><b>Data Drive Efficiency:</b> <span class="pull-right">{{ usableDriveEfficiency() | number:2 }}%</span></p>
-        <p><b>Usable Capacity Efficiency:</b> <span class="pull-right">{{ usableCapacityEfficiency() | number:2 }}%</span></p>
+        <p><b><a href="#" tooltip="{{tooltips.usableDriveEfficiency}}">Data Drive Efficiency:</a></b> <span class="pull-right">{{ usableDriveEfficiency() | number:2 }}%</span></p>
+        <p><b><a href="#" tooltip="{{tooltips.usableCapacityEfficiency}}">Usable Capacity Efficiency:</a></b> <span class="pull-right">{{ usableCapacityEfficiency() | number:2 }}%</span></p>
 
         <hr class="hr-black">
 
-        <p><b>Aggregate Usable Capacity:</b>
+        <p><b><a href="#" tooltip="{{tooltips.aggrUsableCapacity}}" >Aggregate Usable Capacity:</a></b>
           <span class="pull-right" id="aggr-usable-capacity">{{ aggrUsableCapacity() | base2convert:2:'MiB':selectedOutputUnit }}</span></p>
 
-        <p><b>Volume Usable Capacity:</b>
+        <p><b><a href="#" tooltip="{{tooltips.volUsableCapacity}}" >Volume Usable Capacity:</a></b>
           <span class="pull-right" id="vol-usable-capacity">{{ volUsableCapacity() | base2convert:2:'MiB':selectedOutputUnit }}</span></p>
 
       </div>

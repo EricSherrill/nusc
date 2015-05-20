@@ -9,6 +9,7 @@
     $scope.outputUnits = outputUnits;
     $scope.raidTypes = raidTypes;
     $scope.alerts = alerts;
+    $scope.tooltips = tooltips;
 
     // drive_table.html settings
     $scope.sortType = "-mkt_size";
@@ -90,7 +91,7 @@
     };
     // TR-3838, page 9
     $scope.volTotalCapacity = function () {
-      return ($scope.aggrTotalCapacity() * 0.9) * 0.995;
+      return ($scope.aggrUsableCapacity() * 0.9) * 0.995;
     };
     // account for snap reserve
     $scope.volUsableCapacity = function () {
