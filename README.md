@@ -19,5 +19,7 @@ Please use the Issues tool to report any issues.
 
 - LUN sizing is not available.
 
+- Advanced Drive Partitioning (ADP) is not available.
+
 
 
