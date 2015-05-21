@@ -126,7 +126,7 @@
         <p><b><a href="#" tooltip="{{tooltips.rgSizeMax}}">RG Size Max:</a></b> <span class="pull-right">{{ rgSizeMax() }}</span></p>
         <p><b><a href="#" tooltip="{{tooltips.rgSizeDefault}}">RG Size Default:</a></b> <span class="pull-right">{{ rgSizeDefault() }}</span></p>
         <p><b><a href="#" tooltip="{{tooltips.rgSizeMin}}">RG Size Min:</a></b> <span class="pull-right">{{ rgSizeMin() }}</span></p>
-        <p><b><a href="#" tooltip="{{tooltips.rgSuggestedRange}}">RG Suggested Range:</a></b> <span class="pull-right">{{ selectedDrive.rg_suggested_dp_min }} - {{ selectedDrive.rg_suggested_dp_max }}</span></p>
+        <p ng-show="selectedRaidType.name == 'raidDP'"><b><a href="#" tooltip="{{tooltips.rgSuggestedRange}}">RG Suggested Range:</a></b> <span class="pull-right">{{ selectedDrive.rg_suggested_dp_min }} - {{ selectedDrive.rg_suggested_dp_max }}</span></p>
 
 
       </div>
