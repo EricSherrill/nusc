@@ -77,9 +77,13 @@
     $scope.totalRightSizeCapacity = function () {
       return $scope.totalDrives * $scope.selectedDrive.right_size_mib;
     };
+    // TR-3838, page 8
+    $scope.driveOverhead = function () {
+      return $scope.dataDrives() * 20.5;
+    };
 
     $scope.aggrTotalCapacity = function () {
-      return $scope.dataDrives() * $scope.selectedDrive.right_size_mib;
+      return ($scope.dataDrives() * $scope.selectedDrive.right_size_mib) - $scope.driveOverhead();
     };
     // account for aggr reserve
     $scope.aggrUsableCapacity = function () {
