@@ -50,6 +50,7 @@ var outputUnits = [
 ];
 
 var raidTypes = [
+{"displayName": "RAID-TEC", "name": "raidTEC", "parity_drives": 3},  
 {"displayName": "RAID-DP", "name": "raidDP", "parity_drives": 2},
 {"displayName": "RAID-4", "name": "raid4", "parity_drives": 1}
 ];
