@@ -23,3 +23,4 @@ Please use the Issues tool to report any issues.
 
 
 
+Deployed via GitHub Pages to https://ericsherrill.github.io/nusc/
